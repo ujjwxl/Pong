@@ -7,7 +7,6 @@ import singlePlayerIcon from "../assets/single-player.png";
 import multiPlayerIcon from "../assets/multi-player.png";
 import settingsIcon from "../assets/settings-icon.png";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import buttonClickSound from "../assets/button-click-sound.mp3";
 import { HomeProps } from "../utils/types";
 import { useEffect } from "react";
 
@@ -47,19 +46,6 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
         }
     };
 
-    const playSound = () => {
-        const audio = new Audio(buttonClickSound);
-
-        if(isSoundOn){
-            audio.play();
-        }
-      };
-
-    const playMutedSound = () => {
-        const audio = new Audio(buttonClickSound);
-        audio.play();
-    }
-
     return (
         <div className="slowed-blurry-background">
             <div className="overlay"></div>
@@ -72,7 +58,7 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
                         target="__blank"
                         className="star-github-link"
                     >
-                        <div className="star-github-button" onClick={playSound}>
+                        <div className="star-github-button">
                             <GitHubIcon className="github-star-icon" />
                             <p>Star GitHub</p>
                         </div>
@@ -104,8 +90,7 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
                         {!isSoundOn && (
                             <img
                                 src={soundOffImage}
-                                // onClick={onSoundChange}
-                                onClick={() => { onSoundChange(); playMutedSound(); }}
+                                onClick={onSoundChange}
                                 className="sound-icon"
                             ></img>
                         )}
@@ -113,7 +98,7 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
                     </div>
                     <div className="container-btn">
                         <div className="home-page-option">
-                            <Button onClick={(e) => { handleClick(e); playSound(); }} className="single-player">
+                            <Button onClick={handleClick} className="single-player">
                                 {" "}
                                 <img src={singlePlayerIcon} alt="" />
                                 Single player{" "}
@@ -121,7 +106,7 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
                         </div>
 
                         <div className="home-page-option">
-                            <Button onClick={(e) => { handleClick(e); playSound(); }} className="two-player">
+                            <Button onClick={handleClick} className="two-player">
                                 {" "}
                                 <img src={multiPlayerIcon} alt="" />
                                 Two players{" "}
@@ -129,7 +114,7 @@ const Home: React.FC<HomeProps> = ({ isSoundOn, onSoundChange }) => {
                         </div>
 
                         <div className="home-page-option">
-                            <Button onClick={(e) => { handleClick(e); playSound(); }} className="settings">
+                            <Button onClick={handleClick} className="settings">
                                 {" "}
                                 <img src={settingsIcon} alt="" />
                                 Settings{" "}

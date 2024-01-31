@@ -4,7 +4,6 @@ import { ball, player, score } from "../utils/types";
 import pongImage from "../assets/pong-header.png";
 import hitSound from "../assets/Paddle Ball Hit Sound Effect HD.mp3";
 import goalSound from "../assets/goal.mp3";
-import buttonClickSound from "../assets/button-click-sound.mp3";
 import { useNavigate } from "react-router-dom";
 import AudioComponent from "../components/Audio";
 
@@ -475,14 +474,6 @@ const MultiplePlayerMode: React.FC<MultiplePlayerModeProps> = ({
         });
       };
 
-      const playSound = () => {
-        const audio = new Audio(buttonClickSound);
-
-        if(isSoundOn){
-            audio.play();
-        }
-      };
-
     return (
         <section className={isBlurry === true ? "blurry" : ""}>
             <div className="title">
@@ -494,7 +485,7 @@ const MultiplePlayerMode: React.FC<MultiplePlayerModeProps> = ({
             </div>
             <div className="options-container">
                 <span className="playing-state"> Press p to pause game</span>
-                <button onClick={() => { handleReturnToMenu(); playSound(); }} className="return-btn">
+                <button onClick={handleReturnToMenu} className="return-btn">
                     Return to menu
                 </button>
             </div>
